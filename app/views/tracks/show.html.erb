@@ -1,1 +1,9 @@
 <h1><%= @track.track_name %></h1>
+<br>
+
+<h2>Lyrics</h2>
+<%= @track.lyrics %>
+
+<li><%= link_to "Edit", edit_track_url %></li>
+
+<li><%= link_to "Album", album_url(@track.album) %></li>

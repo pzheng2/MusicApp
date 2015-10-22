@@ -1,1 +1,13 @@
 <h1><%= @album.album_name %></h1>
+<br>
+
+<ul>
+  <% @album.tracks.each do |track| %>
+    <li><%= track.inspect %>
+      <%= link_to "Show Track", track_url(track.id) %>
+    </li>
+  <% end %>
+</ul>
+
+<li><%= link_to "Edit", edit_album_url %></li>
+<li><%= link_to "Band", band_url(@album.band) %></li>

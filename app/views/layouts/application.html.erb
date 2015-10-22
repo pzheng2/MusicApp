@@ -14,7 +14,9 @@
 <% else %>
   <%= current_user.email %>
   <form action="<%= session_url %>" method="post">
-    <input type="hidden" name="authenticity_token %>">
+    <input type="hidden"
+     name="authenticity_token"
+     value="<%= form_authenticity_token %>">
     <input name="_method" type="hidden" value="delete" />
     <button name="button">log out</button>
   </form>

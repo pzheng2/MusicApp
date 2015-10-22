@@ -7,6 +7,4 @@ class Track < ActiveRecord::Base
     primary_key: :id
   )
 
-  
-
 end

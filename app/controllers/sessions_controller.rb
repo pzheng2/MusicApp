@@ -12,21 +12,27 @@ class SessionsController < ApplicationController
 
     if user.nil?
       flash.now[:errors] = ["Incorrect username and/or password"]
-      redirect_to new_session_url
+      redirect_to new_user_url
       return
     end
 
-    login_user!(user)
-    
-    if @user.save
-      redirect_to user_url
+    log_in_user!(user)
+
+    if user.save
+      redirect_to user_url(user)
     else
+      flash.now[:errors] = user.errors.full_messages
       redirect_to new_session_url
     end
   end
 
   def destroy
+    unless current_user.nil?
+      current_user.reset_session_token!
+    end
 
+    session[:session_token] = nil
+    redirect_to new_user_url
   end
 
   def user_params

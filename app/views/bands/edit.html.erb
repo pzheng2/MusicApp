@@ -1,0 +1,21 @@
+<h1>Edit Band: <%= @band.name %></h1>
+
+<form method="POST"
+      action="<%= @band.persisted? ? band_url(@band) : bands_url %>">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <input type="hidden"
+         name="_method"
+         value="<%= @band.persisted? ? 'PATCH' : 'POST' %>">
+  <label for="band-name">Band Name: </label>
+
+  <br>
+  <input type="text" id="band-name"
+         name="band[name]"
+         value="<%= @band.name %>">
+
+  <button type="submit">Edit Band</button>
+</form>

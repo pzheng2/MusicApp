@@ -1,0 +1,39 @@
+<h1>Edit Track: <%= @track.track_name %></h1>
+
+<form method="POST"
+      action="<%= @track.persisted? ? track_url(@track) : tracks_url %>">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <input type="hidden"
+         name="_method"
+         value="<%= @track.persisted? ? 'PATCH' : 'POST' %>">
+  <label for="track-name">Track Name: </label>
+
+  <br>
+  <input type="text" id="track-name"
+         name="track[track_name]"
+         value="<%= @track.track_name %>">
+
+  <br>
+  <br>
+  <label for="album">Album</label>
+  <select id="album" name="track[album_id]">
+    <% @albums.each do |album| %>
+      <% if @track.album.id == album.id %>
+        <option selected disabled><%= album.album_name %></option>
+      <% else %>
+        <option value="<%= album.id %>"><%= album.album_name %></option>
+      <% end %>
+    <% end %>
+  </select>
+
+  <br>
+  <br>
+  <label for="lyrics">Lyrics</label>
+  <textarea id="lyrics" name="track[lyrics]"><%= @track.lyrics %></textarea>
+
+  <button type="submit">Edit Track</button>
+</form>

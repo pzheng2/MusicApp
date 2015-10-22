@@ -1,0 +1,11 @@
+<h1>Bands</h1>
+
+<ul>
+  <% @bands.each do |band| %>
+    <li><%= band.inspect %>
+    <%= link_to "Show Band", band_url(band.id) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create new band", new_band_url %>

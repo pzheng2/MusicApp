@@ -15,6 +15,7 @@ class AlbumsController < ApplicationController
   end
 
   def edit
+    @bands = Band.all
     @album = Album.find(params[:id])
     render :edit
   end

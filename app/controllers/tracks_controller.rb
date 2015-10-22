@@ -16,6 +16,7 @@ class TracksController < ApplicationController
   end
 
   def edit
+    @albums = Album.all
     @track = Track.find(params[:id])
     render :edit
   end

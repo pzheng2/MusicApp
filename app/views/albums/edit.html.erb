@@ -1,0 +1,34 @@
+<h1>Edit Album: <%= @album.album_name %></h1>
+
+<form method="POST"
+      action="<%= @album.persisted? ? album_url(@album) : albums_url %>">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <input type="hidden"
+         name="_method"
+         value="<%= @album.persisted? ? 'PATCH' : 'POST' %>">
+  <label for="album-name">Album Name: </label>
+
+  <br>
+  <input type="text" id="album-name"
+         name="album[album_name]"
+         value="<%= @album.album_name %>">
+
+  <br>
+  <br>
+  <label for="album">Album</label>
+  <select id="album" name="album[band_id]">
+    <% @bands.each do |band| %>
+      <% if @album.band.id == band.id %>
+        <option selected disabled><%= band.name %></option>
+      <% else %>
+        <option value="<%= band.id %>"><%= band.name %></option>
+      <% end %>
+    <% end %>
+  </select>
+
+  <button type="submit">Edit Album</button>
+</form>
